@@ -25,24 +25,61 @@
     </div>
 </header>
 
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th class="bg-dark text-white">Título</th>
-                    <th class="bg-dark text-white">Tipo</th>
-                    <th class="bg-dark text-white">Estado</th>
-                    <th class="bg-dark text-white">Prioridad</th>
-                    <th class="bg-dark text-white">Fecha creación</th>
-                    <th class="bg-dark text-white">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            Filtrado
+        </div>
+        <div class="card-body">
+            <form action="" method="POST">
+                <div>
+                    <label for="capacidad">Capacidad:</label>
+                    <select name="capacidad" id="capacidad" class="form-select">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="ubicacion">Ubicacion:</label>
+                    <select name="ubicacion" id="ubicacion" class="form-select">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="equipamiento">Equipamiento:</label>
+                    <select name="equipamiento" id="equipamiento" class="form-select">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
 
-                </tbody>
-            </table>
+                <div class="d-flex justify-content-center gap-5 mt-4">
+                    <button type="submit" class="btn btn-primary ">Filtrar</button>
+                    <a href="/dashboard" class="btn btn-secondary">Limpiar</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="bg-dark text-white">Imagen</th>
+                        <th class="bg-dark text-white">Capacidad</th>
+                        <th class="bg-dark text-white">Ubicacion</th>
+                        <th class="bg-dark text-white">Equipamiento</th>
+                        <th class="bg-dark text-white">Ver Detalles</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

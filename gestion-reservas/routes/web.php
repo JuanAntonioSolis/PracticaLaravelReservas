@@ -13,3 +13,7 @@ Route::get('/dashboard', function () {
 Route::get('/registro', function () {
     return view('registro.index');
 });
+
+Route::get('/login', function () {
+    return view('login.index');
+});

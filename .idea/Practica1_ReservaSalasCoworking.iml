@@ -132,6 +132,11 @@
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/bacon/bacon-qr-code" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/dasprid/enum" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel/fortify" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/paragonie/constant_time_encoding" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/pragmarx/google2fa" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

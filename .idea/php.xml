@@ -143,6 +143,11 @@
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/psr/clock" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel/fortify" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/pragmarx/google2fa" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/bacon/bacon-qr-code" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">

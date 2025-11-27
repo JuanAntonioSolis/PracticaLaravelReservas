@@ -10,10 +10,12 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-Route::get('/registro', function () {
-    return view('registro.index');
+
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home',function(){
+        return view('home');
+    });
 });
 
-Route::get('/login', function () {
-    return view('login.index');
-});
+

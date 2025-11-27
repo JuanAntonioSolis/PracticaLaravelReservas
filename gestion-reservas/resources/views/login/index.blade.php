@@ -61,7 +61,7 @@
                         </div>
 
                         <div>
-                            <p class="mb-0">No tiene una cuenta ? <a href="#!" class="text-white-50 fw-bold">Registrarse</a>
+                            <p class="mb-0">No tiene una cuenta ? <a href="/registro" class="text-white-50 fw-bold">Registrarse </a>
                             </p>
                         </div>
 

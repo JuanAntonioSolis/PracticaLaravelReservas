@@ -148,6 +148,19 @@
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/paragonie/constant_time_encoding" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/pragmarx/google2fa" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/dragon-code/pretty-array" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/dragon-code/contracts" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/dragon-code/support" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/publisher" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/archtechx/enums" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/locales" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/native-currency-names" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/lang" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/native-country-names" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/locale-list" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/config" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/native-locale-names" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">

@@ -137,6 +137,19 @@
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel/fortify" />
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/paragonie/constant_time_encoding" />
       <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/pragmarx/google2fa" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/archtechx/enums" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/dragon-code/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/dragon-code/pretty-array" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/dragon-code/support" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/config" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/lang" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/locale-list" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/locales" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/native-country-names" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/native-currency-names" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/native-locale-names" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/laravel-lang/publisher" />
+      <excludeFolder url="file://$MODULE_DIR$/gestion-reservas/vendor/symfony/polyfill-php81" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

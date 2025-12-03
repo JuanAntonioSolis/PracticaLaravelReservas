@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reserva extends Model
 {
+    protected $fillable = ['fecha', 'hora', 'sala_id', 'user_id', 'numPersonas', 'estado','telefono'];
+
     /**
      * @return BelongsTo Develve la sala a la que pertenece la reserva
      */

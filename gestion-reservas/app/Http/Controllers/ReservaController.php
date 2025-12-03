@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reserva;
+use App\Models\Sala;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -23,8 +25,57 @@ class ReservaController extends Controller
         return view('reservas.new');
     }
 
-    public function store(){
+    /**
+     * Almacenar nueva reserva
+     */
+    public function store(Request $request){
+        $sala_id = $request->input('sala_id');
+        $fecha = $request->input('fecha');
+        $hora = $request->input('hora');
+        $numPersonas = $request->input('numPersonas');
+        $telefono = $request->input('telefono');
 
+        Reserva::create([ 'sala_id' => $sala_id,
+            'fecha' => $fecha,
+            'hora' => $hora,
+            'user_id' => auth()->id(),
+            'numPersonas' => $numPersonas,
+            'telefono' => $telefono,
+            'estado' => 'pendiente']);
+
+        return redirect()->route('mis_reservas');
+    }
+
+    public function buscarDisponibilidad(Request $request)  {
+        //Validar datos del formulario
+        $request->validate([
+            'fecha' => 'required|date|after_or_equal:today',
+            'hora' => 'required',
+            'personas' => 'required|integer|min:1',
+            'telefono' => 'required|string|min:9'
+        ]);
+
+        $fecha = $request->input('fecha');
+        $hora = $request->input('hora');
+        $numPersonas = $request->input('personas');
+        $telefono = $request->input('telefono');
+
+        //Lógica para buscar disponibilidad de salas
+        // Obtener todas las salas
+        // capacidad - numPersona <= 2 --> dos huecos se pueden dejar en las salas
+        $salas = Sala::where('capacidad', '>=', $numPersonas)
+            ->where('capacidad', '<=', (2 + $numPersonas) )->get(); //SQL
+
+        // Filtrar salas ocupadas en esa fecha y hora (SQL)
+        $ocupadas = Reserva::where('fecha', $fecha)
+            ->where('hora', $hora)
+            ->pluck('sala_id')  // Obtener solo los IDs de las salas ocupadas
+            ->toArray();
+
+        // Salas libres
+        $libres = $salas->whereNotIn('id', $ocupadas); // No SQL, se trabaja en memoria
+
+        return view('reservas.search', compact('libres', 'telefono','fecha', 'hora', 'numPersonas'));
     }
 
 

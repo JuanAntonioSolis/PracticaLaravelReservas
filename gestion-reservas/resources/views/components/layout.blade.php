@@ -26,13 +26,21 @@
 
         <nav class="flex items-center justify-end gap-4">
             @auth
-
-                <a
-                    href="{{ route('mis_reservas') }}"
-                    class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                >
-                    Mis reservas
-                </a>
+                @if(auth()->user()->admin)
+                    <a
+                        href="{{ route('reservas.pendientes') }}"
+                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                    >
+                        Reservas pendientes
+                    </a>
+                @else
+                    <a
+                        href="{{ route('mis_reservas') }}"
+                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                    >
+                        Mis reservas
+                    </a>
+                @endif
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

@@ -78,5 +78,65 @@ class ReservaController extends Controller
         return view('reservas.search', compact('libres', 'telefono','fecha', 'hora', 'numPersonas'));
     }
 
+    public function cancelar($reserva) {
+        $reserva = Reserva::findOrFail($reserva);
+
+        //Verificar que la reserva pertenece al usuario logueado
+        if (!auth()->user()->admin){
+            if ($reserva->user_id != auth()->id()) {
+                abort(403);
+            }
+        }
+
+        $reserva->estado = 'cancelada';
+        $reserva->save();
+
+        if (auth()->user()->admin){
+            return redirect()->route('reservas.pendientes');
+        } else{
+            return redirect()->route('mis_reservas');
+        }
+
+    }
+
+    public function pendientes(){
+        $reservas = Reserva::where('fecha', '>=', now()->toDateString())->get();
+
+        return view('reservas.pendientes', compact('reservas'));
+    }
+
+    public function filtrar(Request $request){
+        $fecha = $request->input('fecha');
+        $estado = $request->input('estado');
+
+        if ($estado == 'todas'){
+            $estados = ['pendiente','confirmada','cancelada'];
+
+            $reservas = Reserva::where('fecha', '=', $fecha)->
+            whereIn('estado', $estados)->get();
+        } else{
+            $reservas = Reserva::where('fecha', '=', $fecha)->
+            where('estado', '=', $estado)->get();
+        }
+        return view('reservas.pendientes', compact('reservas'));
+    }
+
+    public function confirmar($reserva) {
+        $reserva = Reserva::findOrFail($reserva);
+
+        //Verificar que la reserva pertenece al usuario logueado
+        if (!auth()->user()->admin){
+                abort(403);
+        }
+        if ($reserva->estado == 'pendiente'){
+            $reserva->estado = 'confirmada';
+            $reserva->save();
+        }
+
+        if (auth()->user()->admin){
+            return redirect()->route('reservas.pendientes');
+        }
+
+    }
 
 }

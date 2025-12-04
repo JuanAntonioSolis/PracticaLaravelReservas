@@ -12,7 +12,7 @@ Route::get('/dashboard', function () {
 });
 
 
-
+//Rutas protegidas por login
 Route::middleware(['auth'])->group(function(){
 
     //Una vez logueado o registrado
@@ -31,6 +31,22 @@ Route::middleware(['auth'])->group(function(){
 
     //Almacenar una nueva reserva
     Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+    //Cancelar una reserva
+    Route::get('/reservas/{reserva}/cancelar', [ReservaController::class, 'cancelar'])->name('reservas.cancelar');
+});
+
+//Rutas protegidas por login y admin
+Route::middleware(['auth','admin'])->group(function(){
+    //Revisar reservas pendientes
+    Route::get('/reservas/pendientes',[ReservaController::class,'pendientes'])->name('reservas.pendientes');
+
+    //Filtrar reservas
+    Route::post('/reservas/filtrar',[ReservaController::class,'filtrar'])->name('reservas.filtrar');
+
+    //Confirmar una reserva
+    Route::get('/reservas/{reserva}/confirmar', [ReservaController::class, 'confirmar'])->name('reservas.confirmar');
+
 });
 
 

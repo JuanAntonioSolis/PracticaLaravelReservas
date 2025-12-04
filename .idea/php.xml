@@ -161,6 +161,7 @@
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/config" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/symfony/polyfill-php81" />
       <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel-lang/native-locale-names" />
+      <path value="$PROJECT_DIR$/gestion-reservas/vendor/laravel/sanctum" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">

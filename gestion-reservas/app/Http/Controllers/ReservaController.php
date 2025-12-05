@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SalaResource;
 use App\Models\Reserva;
 use App\Models\Sala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -136,6 +138,113 @@ class ReservaController extends Controller
         if (auth()->user()->admin){
             return redirect()->route('reservas.pendientes');
         }
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    /// API
+    ///////////////////////////////////////////////////////////////////////
+
+    public function apiNewReserva(Request $request){
+        $sala_id = $request->input('sala_id');
+        $fecha = $request->input('fecha');
+        $hora = $request->input('hora');
+        $numPersonas = $request->input('numPersonas');
+        $telefono = $request->input('telefono');
+        $user_id = auth()->user()->id;
+
+        //Comprobar disponibilidad de la sala
+        $reservaOcupada = DB::table('reservas')->where('sala_id', $sala_id)
+            ->where('fecha', $fecha)
+            ->where('hora', $hora)
+
+            ->first();
+
+        if ($reservaOcupada){
+            return response()->json(['mensaje' => 'Sala ocupada o no disponible','error' => 1]);
+        }
+
+        //sala seleccionada es demasiado grande
+        $sala = Sala::findOrFail($sala_id);
+        if (($sala->capacidad < $numPersonas) || (($sala->capacidad - $numPersonas) > 2)) {
+            return response()->json(['mensaje' => 'Tamaño de la sala incompatible','error' => 2]);
+        }
+
+        //Crear reserva
+        $reserva = Reserva::create([ 'sala_id' => $sala_id,
+            'fecha' => $fecha,
+            'hora' => $hora,
+            'user_id' => $user_id,
+            'numPersonas' => $numPersonas,
+            'telefono' => $telefono,
+            'estado' => 'pendiente']);
+
+        return $reserva->toResource();
+
+    }
+
+    //Cancelar reserva si es tuya o eres admin
+    public function apiUpdateReserva($id){
+        $reserva = Reserva::findOrFail($id);
+
+        if (!auth()->user()->admin){
+            if ($reserva->user_id != auth()->user()->id) {
+                abort(403);
+            }
+        }
+
+
+        $reserva->estado = 'cancelada';
+        $reserva->save();
+
+        return response()->json(['mensaje' => 'Reserva cancelada','reserva' => $reserva->toResource()]);
+    }
+
+    //Eliminar reserva si es tuya o eres admin
+    public function apiDeleteReserva($id){
+        $reserva = Reserva::findOrFail($id);
+
+        if (!auth()->user()->admin){
+            if ($reserva->user_id != auth()->user()->id) {
+                abort(403);
+            }
+        }
+
+        $reserva->delete();
+
+        return response()->json(['mensaje' => 'Reserva eliminada','reserva' => $reserva->toResource()]);
+    }
+
+    public function apiGetReservaById($id){
+        $reserva = Reserva::findorFail($id);
+
+        if ($reserva->user_id == auth()->id()){
+            return $reserva->toResource();
+        } else{
+            abort(403);
+        }
+    }
+
+    public function apiGetReservasUser(){
+        return Reserva::where('user_id','=', auth()->id())->get()->toResourceCollection();
+
+    }
+
+    public function apiGetReservasAdmin(){
+        if (auth()->user()->admin){
+            return Reserva::all()->toResourceCollection();
+        } else{
+            abort(401);
+        }
+    }
+
+    public function apiGetSalaById($id){
+        return Sala::findorFail($id)->toResource();
+
+    }
+
+    public function apiGetSalas(){
+        return SalaResource::collection(Sala::all());
 
     }
 
